@@ -4,13 +4,13 @@ import {COMPONENTS} from './Components/Components';
 import {UsersRoutesModule} from './UsersRoutes';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    UsersRoutesModule
-  ],
-  declarations: [
-    COMPONENTS
-  ]
+    imports: [
+        CommonModule,
+        UsersRoutesModule
+    ],
+    declarations: [
+        COMPONENTS
+    ]
 })
 export class UsersModule {
 }

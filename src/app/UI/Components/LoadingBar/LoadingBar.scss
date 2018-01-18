@@ -1,0 +1,28 @@
+@import "../Config";
+
+:host {
+    display: block;
+    position: relative;
+    height: $ui-loading-bar-height;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+
+    &.top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: $ui-loading-bar-z-index;
+        background-color: transparent;;
+    }
+
+    .bar {
+        display: block;
+        position: relative;
+        background-color: $ui-loading-bar-bg;
+        height: $ui-loading-bar-height;
+        width: 0;
+
+        @include ui-glow(4px, 0.5, $ui-loading-bar-bg);
+    }
+}

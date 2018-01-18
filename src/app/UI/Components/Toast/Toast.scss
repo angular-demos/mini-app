@@ -1,0 +1,10 @@
+@import "../Config";
+
+:host {
+    display: block;
+    position: absolute;
+    top: $margin;
+    right: $margin;
+    z-index: $zindex-modal + 10;
+    width: $ui-toast-width;
+}

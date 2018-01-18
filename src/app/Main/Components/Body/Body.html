@@ -1,0 +1,13 @@
+<ui-loading-bar *ngIf="outlet && outlet.isActivated"
+                position="top"
+                [active]="loading"></ui-loading-bar>
+<ui-toast></ui-toast>
+<div *ngIf="!outlet || !outlet.isActivated"
+     class="app-loading">
+<!--
+    <app-logo class="large"></app-logo>
+-->
+    <p>Loading your profile...</p>
+    <ui-loading-bar position="inline" [active]="loading"></ui-loading-bar>
+</div>
+<router-outlet></router-outlet>

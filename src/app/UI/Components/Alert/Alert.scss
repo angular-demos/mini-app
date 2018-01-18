@@ -1,0 +1,75 @@
+@import "../Config";
+
+@mixin ui-alert-variant($background, $border, $text-color) {
+    background-color: $background;
+    border-color: $border;
+    color: $text-color;
+
+    hr {
+        border-top-color: darken($border, 5%);
+    }
+    .alert-link {
+        color: darken($text-color, 10%);
+    }
+}
+
+:host {
+    display: block;
+    position: relative;
+    padding: $alert-padding;
+    margin-bottom: $margin;
+    border: 1px solid transparent;
+    border-radius: $alert-border-radius;
+
+    &.ui-alert-nested {
+        border: none;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    //&.ui-alert-success {
+    //    @include ui-alert-variant($alert-success-bg, $alert-success-border, $alert-success-text);
+    //}
+    //&.ui-alert-info {
+    //    @include ui-alert-variant($alert-info-bg, $alert-info-border, $alert-info-text);
+    //}
+    //&.ui-alert-warning {
+    //    @include ui-alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text);
+    //}
+    //&.ui-alert-danger {
+    //    @include ui-alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
+    //}
+
+    .txt {
+        display: block;
+        position: relative;
+        max-height: 200px;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        /deep/ p:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .close {
+        display: block;
+        position: absolute;
+        top: $margin;
+        right: $margin;
+    }
+
+    /deep/ pre {
+        border-radius: 0;
+        padding: 0;
+        overflow: auto;
+        max-height: 200px;
+        width: 100%;
+    }
+
+    /deep/ code {
+        font-size: 10px;
+        line-height: 10px;
+        white-space: pre;
+    }
+}

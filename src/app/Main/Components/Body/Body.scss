@@ -1,0 +1,26 @@
+@import "../Config";
+
+:host {
+    display: block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    .app-loading {
+        $width: 300px;
+        $height: 75px;
+        display: block;
+        position: fixed;
+        width: $width;
+        height: $height;
+        left: 50%;
+        top: 50%;
+        margin-left: -($width/2);
+        margin-top: -($height/2);
+    }
+
+    p {
+        display: block;
+        text-align: center;
+    }
+}

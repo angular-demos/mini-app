@@ -1,0 +1,17 @@
+$vendors: "-moz-", "-webkit-", "-ms-", "-o-", "";
+
+@mixin ui-box-shadow($top, $left, $blur, $color, $inset: false) {
+    @if $inset {
+        @each $vendor in $vendors {
+            #{$vendor}box-shadow: inset $top $left $blur $color;
+        }
+    } @else {
+        @each $vendor in $vendors {
+            #{$vendor}box-shadow: $top $left $blur $color;
+        }
+    }
+}
+
+@mixin ui-glow($size, $opacity: 0.5, $color: #000000) {
+    @include ui-box-shadow(0, 0, $size, rgba($color, $opacity));
+}

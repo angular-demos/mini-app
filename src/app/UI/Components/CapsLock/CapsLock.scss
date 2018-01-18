@@ -1,0 +1,13 @@
+@import "../Config";
+
+:host {
+    display: block;
+    position: relative;
+
+    padding: $margin;
+    font-size: 80%;
+
+    ui-icon {
+        margin-right: $margin;
+    }
+}
