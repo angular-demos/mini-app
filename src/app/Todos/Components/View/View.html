@@ -26,7 +26,10 @@
             </td>
             <td [innerHtml]="todo.title | highlight:search"></td>
             <td>
-                <button class="btn btn-primary btn-sm">Remove</button>
+                <button class="btn btn-primary btn-sm"
+                        (click)="remove(todo)">
+                    Remove
+                </button>
             </td>
         </tr>
         </tbody>

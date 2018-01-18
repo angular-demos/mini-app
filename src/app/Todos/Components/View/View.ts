@@ -64,6 +64,16 @@ export class ViewComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * This just removes the items in memory. I didn't want to perform a DELETE on the REST end point.
+     */
+    public remove(todo: ToDoEntity) {
+        const indx: number = this.todos.indexOf(todo);
+        if (indx !== -1) {
+            this.todos.splice(indx, 1);
+        }
+    }
+
+    /**
      * Fetch data from the router.
      */
     public ngOnInit(): void {
