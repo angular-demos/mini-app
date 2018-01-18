@@ -1,9 +1,12 @@
 import {NgModule} from '@angular/core';
+import {HttpModule} from '@angular/http';
 import {DIRECTIVES} from './Directives/Directives';
 import {SERVICES} from './Services/Services';
 
 @NgModule({
-    imports: [],
+    imports: [
+        HttpModule
+    ],
     declarations: [
         DIRECTIVES
     ],
