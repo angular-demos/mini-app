@@ -1,6 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" routerLink="/posts"><strong>Mini</strong>App</a>
-    <div class="collapse navbar-collapse">
+    <button class="navbar-toggler"
+            (click)="toggleCollapse = !toggleCollapse"
+            type="button"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [class.show]="toggleCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" routerLink="/posts">Posts</a>
@@ -12,10 +19,7 @@
                 <a class="nav-link" routerLink="/todos">To Dos</a>
             </li>
         </ul>
-        <users-info name="Leanne Graham"
-                    url="http://www.example.com/"
-                    company="Romaguera-Crona">
-        </users-info>
+        <users-info></users-info>
         <a class="nav-link" routerLink="/users/logout">Logout</a>
     </div>
 </nav>
