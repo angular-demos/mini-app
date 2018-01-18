@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ViewComponent} from './Components/View/View';
+import {PostsResolver} from './Resolvers/PostsResolver';
 
 const routes: Routes = [
     {
@@ -10,7 +11,10 @@ const routes: Routes = [
     },
     {
         path: 'view',
-        component: ViewComponent
+        component: ViewComponent,
+        resolve: {
+            Posts: PostsResolver
+        }
     }
 ];
 

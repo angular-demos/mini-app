@@ -1,5 +1,6 @@
 import {ChangeDetectorRef, Component, HostBinding, NgZone, OnDestroy, ViewChild} from '@angular/core';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
+import {RestService} from '../../../Shared/Services/Rest/RestService';
 import {Changes} from '../../../Shared/Utils/Changes';
 import {SubscriptionMap} from '../../../Shared/Utils/SubscriptionMap';
 
@@ -39,16 +40,16 @@ export class BodyComponent implements OnDestroy {
      */
     public constructor(
         router: Router,
-        //rest: RestService,
+        rest: RestService,
         cdr: ChangeDetectorRef,
         zone: NgZone
     ) {
         this.changes = new Changes(cdr, zone);
-        // rest.busy.subscribe((value) => {
-        //     this.changes.laterMark(() => {
-        //         this.loading = value;
-        //     });
-        // });
+        this.unsub.set('rest', rest.busy.subscribe((value) => {
+            this.changes.laterMark(() => {
+                this.loading = value;
+            });
+        }));
 
         this.unsub.set('router', router.events.subscribe((value) => {
             if (value instanceof NavigationEnd) {

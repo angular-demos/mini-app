@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {RequestMethod, Response} from '@angular/http';
+import {Response} from '@angular/http';
 import * as _ from 'lodash';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/first';
@@ -115,7 +115,7 @@ export class AuthService {
      */
     public logIn(email: string, password: string, remember: boolean): Observable<UserEntity> {
         return this.rest
-            .execute(RequestMethod.Get, 'https://jsonplaceholder.typicode.com/users')
+            .getUsers()
             .map((resp: Response) => {
                 let entity = _.find(resp.json(), {email: email});
                 if (!entity) {

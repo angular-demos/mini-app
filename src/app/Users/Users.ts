@@ -5,6 +5,7 @@ import {SharedModule} from '../Shared/Shared';
 import {UIModule} from '../UI/UI';
 import {COMPONENTS} from './Components/Components';
 import {GUARDS} from './Guards/Guards';
+import {RESOLVERS} from './Resolvers/Resolvers';
 import {UsersRoutesModule} from './UsersRoutes';
 
 @NgModule({
@@ -19,7 +20,8 @@ import {UsersRoutesModule} from './UsersRoutes';
         COMPONENTS
     ],
     providers: [
-        GUARDS
+        GUARDS,
+        RESOLVERS
     ],
     exports: [
         COMPONENTS

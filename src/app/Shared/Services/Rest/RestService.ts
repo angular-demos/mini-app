@@ -24,6 +24,11 @@ const RETRY_DELAY = 1000;
 @Injectable()
 export class RestService {
     /**
+     * The base URL for all RESTfull requests.
+     */
+    private static BASE_URL = 'https://jsonplaceholder.typicode.com/';
+
+    /**
      * Emits busy flags of when a REST request is being made.
      */
     public busy: EventEmitter<boolean> = new EventEmitter();
@@ -61,11 +66,17 @@ export class RestService {
     }
 
     /**
-     * @deprecated Use back end hooks to change headers.
+     * Perform a GET to fetch all users.
      */
-    public setHeaders(headers?: Headers): this {
-        this.headers = headers || void(0);
-        return this;
+    public getUsers(): Observable<Response> {
+        return this.execute(RequestMethod.Get, RestService.BASE_URL + 'users');
+    }
+
+    /**
+     * Perform a GET to fetch all posts for a user (includes comments).
+     */
+    public getPosts(userId: number): Observable<Response> {
+        return this.execute(RequestMethod.Get, RestService.BASE_URL + 'posts?_embed=comments&userId=' + userId);
     }
 
     /**

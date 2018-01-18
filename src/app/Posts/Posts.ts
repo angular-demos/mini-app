@@ -4,6 +4,7 @@ import {SharedModule} from '../Shared/Shared';
 import {UIModule} from '../UI/UI';
 import {COMPONENTS} from './Components/Components';
 import {PostsRoutesModule} from './PostsRoutes';
+import {RESOLVERS} from './Resolvers/Resolvers';
 
 @NgModule({
     imports: [
@@ -14,6 +15,9 @@ import {PostsRoutesModule} from './PostsRoutes';
     ],
     declarations: [
         COMPONENTS
+    ],
+    providers: [
+        RESOLVERS
     ]
 })
 export class PostsModule {

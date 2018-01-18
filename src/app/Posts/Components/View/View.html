@@ -1,1 +1,8 @@
-POSTS
+<ngb-accordion>
+    <ngb-panel *ngFor="let post of posts"
+               title="{{post.title}} ({{post.comments?.length}} comments)">
+        <ng-template ngbPanelContent>
+            {{post.body}}
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>
