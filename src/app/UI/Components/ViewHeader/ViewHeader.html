@@ -16,12 +16,13 @@
                            (ngModelChange)="setSearch($event)">
                 </div>
                 <div class="form-group col-2">
+                    <ng-template #tipContent>{{getSortTooltip()}}</ng-template>
                     <button type="button"
                             class="btn btn-block"
                             [class.btn-secondary]="sort == ''"
                             [class.btn-primary]="sort != ''"
                             placement="top"
-                            [ngbTooltip]="getSortTooltip()"
+                            [ngbTooltip]="tipContent"
                             (click)="setSort(getNextSort())">
                         <ui-icon [name]="getSortIcon()"></ui-icon>
                     </button>
