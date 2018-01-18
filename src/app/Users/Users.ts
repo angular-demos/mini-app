@@ -14,6 +14,9 @@ import {UsersRoutesModule} from './UsersRoutes';
     ],
     declarations: [
         COMPONENTS
+    ],
+    exports: [
+        COMPONENTS
     ]
 })
 export class UsersModule {

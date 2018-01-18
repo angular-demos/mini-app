@@ -1,0 +1,14 @@
+@import "../Config";
+
+:host-context(.navbar-dark) {
+    color: $navbar-dark-color;
+}
+
+:host-context(.navbar-light) {
+    color: $navbar-light-color;
+}
+
+:host {
+    display: block;
+    position: relative;
+}
