@@ -80,6 +80,13 @@ export class RestService {
     }
 
     /**
+     * Perform a GET to fetch all the to do items for a user (includes comments).
+     */
+    public getToDos(userId: number): Observable<Response> {
+        return this.execute(RequestMethod.Get, RestService.BASE_URL + 'todos?userId=' + userId);
+    }
+
+    /**
      * Perform a GET to fetch all albums for a user (includes photos).
      */
     public getAlbums(userId: number): Observable<Response> {

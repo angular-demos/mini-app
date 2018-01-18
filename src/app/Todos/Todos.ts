@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {SharedModule} from '../Shared/Shared';
 import {UIModule} from '../UI/UI';
 import {COMPONENTS} from './Components/Components';
+import {RESOLVERS} from './Resolvers/Resolvers';
 import {TodosRoutesModule} from './TodosRoutes';
 
 @NgModule({
@@ -14,6 +15,9 @@ import {TodosRoutesModule} from './TodosRoutes';
     ],
     declarations: [
         COMPONENTS
+    ],
+    providers: [
+        RESOLVERS
     ]
 })
 export class TodosModule {

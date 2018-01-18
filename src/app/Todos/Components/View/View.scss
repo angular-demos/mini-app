@@ -3,4 +3,14 @@
 :host {
     display: block;
     position: relative;
+
+    /deep/ {
+        .highlight {
+            background-color: $yellow !important;
+        }
+        .todo-status {
+            cursor: pointer;
+        }
+    }
+
 }
