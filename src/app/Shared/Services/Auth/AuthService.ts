@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
+import {RequestMethod, Response} from '@angular/http';
+import * as _ from 'lodash';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/operator/first';
 import {Observable} from 'rxjs/Observable';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {Subject} from 'rxjs/Subject';
 import {Subscriber} from 'rxjs/Subscriber';
-import {StorageService} from '../Storage/StorageService';
-import {STORAGE_TOKEN} from '../Storage/StorageToken';
 import {UserEntity} from '../../Models/UserEntity';
 import {RestService} from '../Rest/RestService';
+import {StorageService} from '../Storage/StorageService';
+import {STORAGE_TOKEN} from '../Storage/StorageToken';
 import {ToastService} from '../Toast/ToastService';
 
 @Injectable()
@@ -113,6 +115,22 @@ export class AuthService {
      * Returns an observable that completes when the login has finished.
      */
     public logIn(email: string, password: string, remember: boolean): Observable<UserEntity> {
+
+        console.log(email);
+
+        return this.rest
+            .execute(RequestMethod.Get, 'https://jsonplaceholder.typicode.com/users')
+            .map((resp: Response) => {
+                let entity = _.find(resp.json(), {email: email});
+                if (!entity) {
+                    // this fakes a resource invalid error.
+                    resp.status = 401;
+                    throw resp;
+                }
+                return entity;
+            });
+
+
         // return this.userSessions
         //     .newEntity({email, password})
         //     .createSession()
@@ -123,6 +141,5 @@ export class AuthService {
         //         this.setSession(userSession, remember);
         //         return userSession;
         //     });
-        return null;
     }
 }

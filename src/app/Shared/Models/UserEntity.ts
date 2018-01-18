@@ -6,6 +6,8 @@ export interface UserEntity {
     name: string;
     username: string;
     email: string;
+    password: string;
+    remember: boolean;
     address: UserAddressEntity;
     phone: string;
     website: string;

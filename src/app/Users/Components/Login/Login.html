@@ -2,7 +2,8 @@
     <div class="row justify-content-center">
         <div class="col-sm-8 col-md-6 col-lg-4">
 
-            <form [formGroup]="form" (submit)="login($event)" #ngForm="ngForm">
+            <form (submit)="email.valid && password.valid && login($event)">
+
                 <fieldset [disabled]="busy">
                     <h2>Please sign in</h2>
 
@@ -10,26 +11,44 @@
                     <input class="form-control"
                            type="email"
                            id="inputEmail"
-                           formControlName="email"
+                           name="email"
                            placeholder="Email address"
+                           [(ngModel)]="model.email"
+                           #email="ngModel"
                            required
                            autofocus>
 
+                    <div [hidden]="email.valid" class="alert alert-danger">
+                        Enter a valid email address.
+                    </div>
+
                     <label for="inputPassword" class="sr-only">Password</label>
                     <input class="form-control"
-                           formControlName="password"
                            type="password"
                            id="inputPassword"
+                           name="password"
                            placeholder="Password"
+                           [(ngModel)]="model.password"
+                           #password="ngModel"
                            required>
+
+                    <div [hidden]="password.valid" class="alert alert-danger">
+                        Enter a fake password.
+                    </div>
 
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="remember-me"> Remember me
+                            <input type="checkbox"
+                                   value="remember-me"
+                                   name="remember"
+                                   [(ngModel)]="model.remember"> Remember me
                         </label>
                     </div>
 
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                    <button class="btn btn-lg btn-primary btn-block"
+                            type="submit"
+                            [disabled]="email.invalid || password.invalid">Sign in
+                    </button>
                 </fieldset>
             </form>
 

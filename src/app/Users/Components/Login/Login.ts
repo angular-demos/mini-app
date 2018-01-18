@@ -1,5 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from '@angular/forms';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {AbstractControl, FormBuilder, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {UserEntity} from '../../../Shared/Models/UserEntity';
+import {AuthService} from '../../../Shared/Services/Auth/AuthService';
 import {ToastService} from '../../../Shared/Services/Toast/ToastService';
 
 /**
@@ -13,9 +15,9 @@ import {ToastService} from '../../../Shared/Services/Toast/ToastService';
 })
 export class LoginComponent {
     /**
-     * Defines the form inputs for the template.
+     * Holds data entered on the form.
      */
-    public form: FormGroup;
+    public model: UserEntity;
 
     /**
      * Disables the form when a HTTP operation takes place.
@@ -27,13 +29,11 @@ export class LoginComponent {
      */
     public constructor(
         private fb: FormBuilder,
-        private toast: ToastService
+        private toast: ToastService,
+        private auth: AuthService,
+        private change: ChangeDetectorRef
     ) {
-        this.form = fb.group({
-            email: this.fb.control('', [Validators.required, this.validateEmail()]),
-            password: fb.control('', [Validators.required]),
-            remember: fb.control(false)
-        });
+        this.model = {} as UserEntity;
     }
 
     /**
@@ -45,29 +45,23 @@ export class LoginComponent {
             event.preventDefault();
         }
 
-        if (this.form.invalid) {
-            return;
-        }
-
-        let formData = this.form.getRawValue();
-        const email = formData['email'];
         this.busy = true;
-        // this.auth
-        //     .logIn(email, formData['password'], formData['remember'])
-        //     .finally(() => this.form.setValue({
-        //         email: formData['email'],
-        //         password: '',
-        //         remember: formData['remember']
-        //     }))
-        //     .finally(() => this.busy = false)
-        //     .subscribe(() => this.routes.home(),
-        //         (rest: Response) => {
-        //             if (rest.status === 401) {
-        //                 this.toast.warning('Your email or password was incorrect.', 'Try Again');
-        //             } else {
-        //                 this.toast.danger('A server error prevented your login.');
-        //             }
-        //         });
+        this.auth
+            .logIn(this.model.email, this.model.password, this.model.remember)
+            .finally(() => {
+                this.busy = false;
+                this.change.detectChanges();
+            })
+            .subscribe(() => {
+                    // @todo route to home
+                },
+                (rest: Response) => {
+                    if (rest.status === 401) {
+                        this.toast.warning('Your email or password was incorrect.', 'Try Again');
+                    } else {
+                        this.toast.danger('A server error prevented your login.');
+                    }
+                });
     }
 
     /**
