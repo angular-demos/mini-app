@@ -4,6 +4,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BodyComponent} from './Main/Components/Body/Body';
 
 import {MainModule} from './Main/Main';
+import {PostsModule} from './Posts/Posts';
 import {SharedModule} from './Shared/Shared';
 import {UsersModule} from './Users/Users';
 
@@ -12,6 +13,7 @@ import {UsersModule} from './Users/Users';
         BrowserModule,
         BrowserAnimationsModule,
         MainModule,
+        PostsModule,
         UsersModule,
         SharedModule.forRoot()
     ],

@@ -1,8 +1,18 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {MainComponent} from './Components/Main/Main';
+import {NotFoundComponent} from './Components/NotFound/NotFound';
 
 const routes: Routes = [
-    {path: '', redirectTo: '/overview', pathMatch: 'full'}
+    {
+        path: '',
+        component: MainComponent,
+        children: [
+            {path: 'posts', loadChildren: 'app/Posts/Posts#PostsModule'},
+            {path: 'users', loadChildren: 'app/Users/Users#UsersModule'}
+        ]
+    },
+    {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({

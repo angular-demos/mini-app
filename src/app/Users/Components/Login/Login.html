@@ -1,13 +1,45 @@
-<form>
-    <h2>Please sign in</h2>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-8 col-md-6 col-lg-4">
+
+            <form [formGroup]="form" (submit)="login($event)" #ngForm="ngForm">
+                <fieldset [disabled]="busy">
+                    <h2>Please sign in</h2>
+
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input class="form-control"
+                           type="email"
+                           id="inputEmail"
+                           formControlName="email"
+                           placeholder="Email address"
+                           required
+                           autofocus>
+
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input class="form-control"
+                           formControlName="password"
+                           type="password"
+                           id="inputPassword"
+                           placeholder="Password"
+                           required>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </fieldset>
+            </form>
+
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">User Accounts</h4>
+                <p>Welcome! This demo uses any of these user
+                    <a target="_blank" href="https://jsonplaceholder.typicode.com/users">records</a>.
+                    Enter any value as a password.
+                </p>
+            </div>
+        </div>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
+</div>

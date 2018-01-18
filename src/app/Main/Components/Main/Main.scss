@@ -7,10 +7,6 @@
     height: 100%;
 
     .container {
-        margin-top: ($navbar-padding-y * 2) + $nav-link-height + $spacer;
-
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #eee;
+        margin-top: $font-size-base + $navbar-padding-x * 2 + $spacer;
     }
 }

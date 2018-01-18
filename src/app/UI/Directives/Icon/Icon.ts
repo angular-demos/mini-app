@@ -1,8 +1,12 @@
 import {Directive, ElementRef, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/core';
+import * as $ from 'jquery';
 import {Changes} from '../../../Shared/Utils/Changes';
 
 const RESERVED_NAMES = ['fa', 'fa-fw', 'fa-spin'];
 
+/**
+ * This is a wrapper directive for Font Awesome icons.
+ */
 @Directive({
     selector: 'ui-icon'
 })
@@ -20,6 +24,12 @@ export class IconDirective implements OnChanges {
     @HostBinding('class.fa')
     public fontAwesome: boolean = true;
 
+    private $el: any;
+
+    public constructor(elRef: ElementRef) {
+        this.$el = $(elRef.nativeElement);
+    }
+
     @HostBinding('class.fa-spin')
     public get isSpinning(): boolean {
         return this.spin;
@@ -33,12 +43,6 @@ export class IconDirective implements OnChanges {
     @HostBinding('class.fa-fw')
     public get isFw(): boolean {
         return this.fw;
-    }
-
-    private $el: JQuery;
-
-    public constructor(elRef: ElementRef) {
-        this.$el = $(elRef.nativeElement);
     }
 
     public ngOnChanges(changes: SimpleChanges): void {

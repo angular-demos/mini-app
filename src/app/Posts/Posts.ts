@@ -3,18 +3,18 @@ import {NgModule} from '@angular/core';
 import {SharedModule} from '../Shared/Shared';
 import {UIModule} from '../UI/UI';
 import {COMPONENTS} from './Components/Components';
-import {UsersRoutesModule} from './UsersRoutes';
+import {PostsRoutesModule} from './PostsRoutes';
 
 @NgModule({
     imports: [
         CommonModule,
         UIModule,
         SharedModule,
-        UsersRoutesModule
+        PostsRoutesModule
     ],
     declarations: [
         COMPONENTS
     ]
 })
-export class UsersModule {
+export class PostsModule {
 }
