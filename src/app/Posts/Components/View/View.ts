@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
-    selector: 'todos-todos',
-    templateUrl: './Todos.html',
-    styleUrls: ['./Todos.scss'],
+    selector: 'posts-view',
+    templateUrl: './View.html',
+    styleUrls: ['./View.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodosComponent {
+export class ViewComponent {
 }

@@ -1,5 +1,5 @@
-import {AlbumsComponent} from './Albums/Albums';
+import {ViewComponent} from './View/View';
 
 export const COMPONENTS = [
-    AlbumsComponent
+    ViewComponent
 ];

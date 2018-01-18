@@ -1,9 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AlbumsComponent} from './Components/Albums/Albums';
+import {ViewComponent} from './Components/View/View';
 
 const routes: Routes = [
-    {path: '', component: AlbumsComponent}
+    {
+        path: '',
+        redirectTo: '/albums/view',
+        pathMatch: 'full'
+    },
+    {
+        path: 'view',
+        component: ViewComponent
+    }
 ];
 
 @NgModule({

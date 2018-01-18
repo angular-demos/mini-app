@@ -6,6 +6,10 @@ import {NotFoundComponent} from './Components/NotFound/NotFound';
 const routes: Routes = [
     {
         path: '',
+        redirectTo: '/posts',
+        pathMatch: 'full'
+    }, {
+        path: '',
         component: MainComponent,
         children: [
             {path: 'albums', loadChildren: 'app/Albums/Albums#AlbumsModule'},
@@ -14,7 +18,10 @@ const routes: Routes = [
             {path: 'users', loadChildren: 'app/Users/Users#UsersModule'}
         ]
     },
-    {path: '**', component: NotFoundComponent}
+    {
+        path: '**',
+        component: NotFoundComponent
+    }
 ];
 
 @NgModule({

@@ -1,9 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PostsComponent} from './Components/Posts/Posts';
+import {ViewComponent} from './Components/View/View';
 
 const routes: Routes = [
-    {path: '', component: PostsComponent}
+    {
+        path: '',
+        redirectTo: '/posts/view',
+        pathMatch: 'full'
+    },
+    {
+        path: 'view',
+        component: ViewComponent
+    }
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
-import {PostsComponent} from './Posts/Posts';
+import {ViewComponent} from './View/View';
 
 export const COMPONENTS = [
-    PostsComponent
+    ViewComponent
 ];

@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
-import {AbstractControl, FormBuilder, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
+import {Router} from '@angular/router';
 import {UserEntity} from '../../../Shared/Models/UserEntity';
 import {AuthService} from '../../../Shared/Services/Auth/AuthService';
 import {ToastService} from '../../../Shared/Services/Toast/ToastService';
@@ -28,12 +29,14 @@ export class LoginComponent {
      * Constructor
      */
     public constructor(
-        private fb: FormBuilder,
         private toast: ToastService,
         private auth: AuthService,
+        private router: Router,
         private change: ChangeDetectorRef
     ) {
-        this.model = {} as UserEntity;
+        this.model = {
+            email: 'Sincere@april.biz'
+        } as UserEntity;
     }
 
     /**
@@ -47,13 +50,15 @@ export class LoginComponent {
 
         this.busy = true;
         this.auth
-            .logIn(this.model.email, this.model.password, this.model.remember)
+            .logIn(this.model.email, null, false)
             .finally(() => {
                 this.busy = false;
                 this.change.detectChanges();
             })
             .subscribe(() => {
-                    // @todo route to home
+                    this.router.navigate(['/']).catch(() => {
+                        this.toast.success('You have successfully signed in.');
+                    });
                 },
                 (rest: Response) => {
                     if (rest.status === 401) {
@@ -62,19 +67,5 @@ export class LoginComponent {
                         this.toast.danger('A server error prevented your login.');
                     }
                 });
-    }
-
-    /**
-     * Email validator for the form.
-     */
-    private validateEmail(): ValidatorFn {
-        const regex = /[^\s@]+@[^\s@]+\.[^\s@]+/;
-
-        return (c: AbstractControl): ValidationErrors | null => {
-            const str = c.value as string;
-            return regex.test(str) ? null : {
-                email: 'Enter a valid email address.'
-            };
-        };
     }
 }

@@ -1,9 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {TodosComponent} from './Components/Todos/Todos';
+import {ViewComponent} from './Components/View/View';
 
 const routes: Routes = [
-    {path: '', component: TodosComponent}
+    {
+        path: '',
+        redirectTo: '/todos/view',
+        pathMatch: 'full'
+    },
+    {
+        path: 'view',
+        component: ViewComponent
+    }
 ];
 
 @NgModule({

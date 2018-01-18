@@ -1,10 +1,10 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
-    selector: 'posts-posts',
-    templateUrl: './Posts.html',
-    styleUrls: ['./Posts.scss'],
+    selector: 'albums-view',
+    templateUrl: './View.html',
+    styleUrls: ['./View.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostsComponent {
+export class ViewComponent {
 }

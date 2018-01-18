@@ -2,61 +2,42 @@
     <div class="row justify-content-center">
         <div class="col-sm-8 col-md-6 col-lg-4">
 
-            <form (submit)="email.valid && password.valid && login($event)">
+            <form (submit)="email.valid && login($event)">
 
                 <fieldset [disabled]="busy">
                     <h2>Please sign in</h2>
 
-                    <label for="inputEmail" class="sr-only">Email address</label>
-                    <input class="form-control"
-                           type="email"
-                           id="inputEmail"
-                           name="email"
-                           placeholder="Email address"
-                           [(ngModel)]="model.email"
-                           #email="ngModel"
-                           required
-                           autofocus>
+                    <div class="form-group">
+                        <label for="inputEmail" class="sr-only">Email address</label>
+                        <input class="form-control"
+                               type="email"
+                               id="inputEmail"
+                               name="email"
+                               placeholder="Email address"
+                               [(ngModel)]="model.email"
+                               #email="ngModel"
+                               valid-email
+                               required
+                               autofocus>
 
-                    <div [hidden]="email.valid" class="alert alert-danger">
-                        Enter a valid email address.
+                        <div [hidden]="email.valid" class="alert alert-danger">
+                            Enter a valid email address.
+                        </div>
                     </div>
 
-                    <label for="inputPassword" class="sr-only">Password</label>
-                    <input class="form-control"
-                           type="password"
-                           id="inputPassword"
-                           name="password"
-                           placeholder="Password"
-                           [(ngModel)]="model.password"
-                           #password="ngModel"
-                           required>
-
-                    <div [hidden]="password.valid" class="alert alert-danger">
-                        Enter a fake password.
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block"
+                                type="submit"
+                                [disabled]="email.invalid">Sign in
+                        </button>
                     </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"
-                                   value="remember-me"
-                                   name="remember"
-                                   [(ngModel)]="model.remember"> Remember me
-                        </label>
-                    </div>
-
-                    <button class="btn btn-lg btn-primary btn-block"
-                            type="submit"
-                            [disabled]="email.invalid || password.invalid">Sign in
-                    </button>
                 </fieldset>
             </form>
 
             <div class="alert alert-info" role="alert">
-                <h4 class="alert-heading">User Accounts</h4>
-                <p>Welcome! This demo uses any of these user
-                    <a target="_blank" href="https://jsonplaceholder.typicode.com/users">records</a>.
-                    Enter any value as a password.
+                <p>Welcome! You can use one of these user
+                    <a target="_blank" href="https://jsonplaceholder.typicode.com/users">records</a>. A valid email
+                    address has been pre-entered for your convenience.
                 </p>
             </div>
         </div>

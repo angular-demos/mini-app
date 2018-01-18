@@ -1,5 +1,5 @@
-import {TodosComponent} from './Todos/Todos';
+import {ViewComponent} from './View/View';
 
 export const COMPONENTS = [
-    TodosComponent
+    ViewComponent
 ];
