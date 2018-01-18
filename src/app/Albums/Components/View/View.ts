@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AlbumEntity} from '../../../Shared/Models/AlbumEntity';
 import {SubscriptionMap} from '../../../Shared/Utils/SubscriptionMap';
@@ -9,7 +9,7 @@ import {SubscriptionMap} from '../../../Shared/Utils/SubscriptionMap';
     styleUrls: ['./View.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ViewComponent {
+export class ViewComponent implements OnInit, OnDestroy {
     /**
      * A collection of posts for this user.
      */
