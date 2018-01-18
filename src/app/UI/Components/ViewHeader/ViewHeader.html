@@ -14,3 +14,11 @@
         </form>
     </div>
 </div>
+<div class="row">
+    <div class="col">
+        <ng-content *ngIf="count > 0"></ng-content>
+        <p *ngIf="count == 0">
+            There are no {{title | lowercase}} matching your search term.
+        </p>
+    </div>
+</div>

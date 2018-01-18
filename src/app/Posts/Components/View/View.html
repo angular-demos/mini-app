@@ -1,23 +1,16 @@
 <ui-view-header title="Posts"
                 [count]="(posts | filter:{title:search,body:search}).length"
-                [(search)]="search"></ui-view-header>
-<div class="row">
-    <div class="col">
-        <ngb-accordion>
-            <ngb-panel *ngFor="let post of posts | filter:{title:search,body:search}"
-                       title="{{post.title}} ({{post.comments?.length}} comments)">
-                <ng-template ngbPanelContent>
-                    {{post.body}}
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
+                [(search)]="search">
+    <div class="row">
+        <div class="col">
+            <ngb-accordion>
+                <ngb-panel *ngFor="let post of posts | filter:{title:search,body:search}"
+                           title="{{post.title}} ({{post.comments?.length}} comments)">
+                    <ng-template ngbPanelContent>
+                        {{post.body}}
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+        </div>
     </div>
-</div>
-<div class="row"
-     *ngIf="(posts | filter:{title:search,body:search}).length === 0">
-    <div class="col">
-        <p>
-            There are no posts matching your search term.
-        </p>
-    </div>
-</div>
+</ui-view-header>
