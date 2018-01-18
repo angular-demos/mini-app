@@ -2,16 +2,33 @@
     <div class="col">
         <h2>{{title}} <span *ngIf="search">({{count}} found)</span></h2>
     </div>
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-5">
+
         <form>
-            <div class="form-group">
-                <input class="form-control"
-                       name="search"
-                       placeholder="Search"
-                       [ngModel]="search"
-                       (ngModelChange)="setSearch($event)">
+            <div class="form-row">
+                <div class="form-group col-10">
+                    <label for="searchInput" class="sr-only">Search</label>
+                    <input class="form-control"
+                           id="searchInput"
+                           name="search"
+                           placeholder="Search"
+                           [ngModel]="search"
+                           (ngModelChange)="setSearch($event)">
+                </div>
+                <div class="form-group col-2">
+                    <button type="button"
+                            class="btn btn-block"
+                            [class.btn-secondary]="sort == ''"
+                            [class.btn-primary]="sort != ''"
+                            placement="top"
+                            [ngbTooltip]="getSortTooltip()"
+                            (click)="setSort(getNextSort())">
+                        <ui-icon [name]="getSortIcon()"></ui-icon>
+                    </button>
+                </div>
             </div>
         </form>
+
     </div>
 </div>
 <div class="row">

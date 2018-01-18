@@ -1,10 +1,11 @@
 <ui-view-header title="Posts"
                 [count]="(posts | filter:{title:search,body:search}).length"
-                [(search)]="search">
+                [(search)]="search"
+                [(sort)]="sort">
     <div class="row">
         <div class="col">
             <ngb-accordion>
-                <ngb-panel *ngFor="let post of posts | filter:{title:search,body:search}">
+                <ngb-panel *ngFor="let post of posts | filter:{title:search,body:search} | sort:{key:'title',dir:sort}">
                     <ng-template ngbPanelTitle>
                         <span [innerHtml]="post.title | highlight:search"></span> <span>({{post.comments?.length}} comments)</span>
                     </ng-template>

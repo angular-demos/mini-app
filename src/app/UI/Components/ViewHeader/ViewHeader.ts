@@ -35,9 +35,65 @@ export class ViewHeaderComponent {
     public searchChange: EventEmitter<string> = new EventEmitter<string>();
 
     /**
+     * The default sort direction
+     */
+    @Input()
+    public sort: string;
+
+    /**
+     * Emits changes in the sort direction
+     */
+    @Output()
+    public sortChange: EventEmitter<string> = new EventEmitter<string>();
+
+    /**
      * Emits a change to the search term.
      */
     public setSearch(term: string) {
         this.searchChange.emit(term);
+    }
+
+    /**
+     * The tooltip text for the current sort direction.
+     */
+    public getSortTooltip() {
+        if (this.sort === 'asc') {
+            return 'Ascending';
+        } else if (this.sort === 'desc') {
+            return 'Descending';
+        }
+        return 'Unsorted';
+    }
+
+    /**
+     * The icon for the current sort direction.
+     */
+    public getSortIcon() {
+        if (this.sort === 'asc') {
+            return 'fa-sort-amount-asc';
+        } else if (this.sort === 'desc') {
+            return 'fa-sort-amount-desc';
+        }
+        return 'fa-random';
+    }
+
+    /**
+     * Emits the current sort direction.
+     */
+    public setSort(sort: string) {
+        this.sortChange.emit(sort);
+    }
+
+    /**
+     * Cycles through the different sort directions.
+     */
+    public getNextSort() {
+        switch (this.sort) {
+            case '':
+                return 'asc';
+            case 'asc':
+                return 'desc';
+        }
+        return '';
     }
 }

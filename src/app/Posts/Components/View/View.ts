@@ -21,6 +21,11 @@ export class ViewComponent implements OnInit, OnDestroy {
     public search: string = '';
 
     /**
+     * The current sort direction.
+     */
+    public sort: string = '';
+
+    /**
      * Subscription helper.
      */
     private unsub: SubscriptionMap = new SubscriptionMap();
