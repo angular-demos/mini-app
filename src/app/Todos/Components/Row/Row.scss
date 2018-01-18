@@ -1,0 +1,12 @@
+@import "../Config";
+
+:host {
+    /deep/ {
+        .highlight {
+            background-color: $yellow !important;
+        }
+        .todo-status {
+            cursor: pointer;
+        }
+    }
+}

@@ -15,22 +15,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let todo of todos | filter:{title:search} | filter:getFilterOptions() | sort:{key:'title',dir:sort} | slice:((page-1) * 10):(page * 10)">
-            <th scope="row">{{todo.id}}</th>
-            <td>
-                <ng-template #tipContent>{{todo.completed ? 'Completed' : 'Unfinished'}}</ng-template>
-                <ui-icon class="todo-status"
-                         [name]="todo.completed ? 'fa-check-square-o' : 'fa-square-o'"
-                         [ngbTooltip]="tipContent"
-                         (click)="todo.completed = !todo.completed"></ui-icon>
-            </td>
-            <td [innerHtml]="todo.title | highlight:search"></td>
-            <td>
-                <button class="btn btn-primary btn-sm"
-                        (click)="remove(todo)">
-                    Remove
-                </button>
-            </td>
+        <tr *ngFor="let todo of todos | filter:{title:search} | filter:getFilterOptions() | sort:{key:'title',dir:sort} | slice:((page-1) * 10):(page * 10)"
+            todos-row
+            [todo]="todo"
+            [search]="search"
+            (remove)="todo.removing = true"
+            [@fadeOut]="todo.removing ? 'removing' : ''"
+            (@fadeOut.done)="$event.toState == 'removing' ? remove(todo) : false">
         </tr>
         </tbody>
     </table>

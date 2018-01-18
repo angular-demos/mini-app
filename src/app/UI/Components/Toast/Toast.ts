@@ -27,7 +27,6 @@ export class ToastComponent implements OnDestroy {
      */
     public constructor(private toast: ToastService) {
         this.toastSubscription = toast.messages.subscribe((info: ToastInfo) => {
-            console.info('subscribe', info);
             this.queue.unshift(info);
             if (info.timeout !== 0) {
                 setTimeout(() => {

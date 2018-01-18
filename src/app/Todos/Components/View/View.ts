@@ -1,3 +1,4 @@
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ToDoEntity} from '../../../Shared/Models/ToDoEntity';
@@ -7,7 +8,15 @@ import {SubscriptionMap} from '../../../Shared/Utils/SubscriptionMap';
     selector: 'todos-view',
     templateUrl: './View.html',
     styleUrls: ['./View.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    animations: [
+        trigger('fadeOut', [
+            state('removing', style({opacity: 1})),
+            transition('* => removing', [
+                animate('250ms ease-in-out', style({opacity: 0}))
+            ])
+        ])
+    ]
 })
 export class ViewComponent implements OnInit, OnDestroy {
     /**
