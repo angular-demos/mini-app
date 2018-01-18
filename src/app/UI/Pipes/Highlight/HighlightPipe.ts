@@ -1,6 +1,9 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {Strings} from '../../../Shared/Utils/Strings';
 
+/**
+ * Applies a span wrapping around matched text.
+ */
 @Pipe({
     name: 'highlight'
 })

@@ -13,7 +13,7 @@
         <tbody>
         <tr *ngFor="let album of albums | filter:{title:search}">
             <th scope="row">{{album.id}}</th>
-            <td>{{album.title}}</td>
+            <td [innerHtml]="album.title | highlight:search"></td>
             <td>{{album.photos?.length}}</td>
             <td>
                 <button class="btn btn-primary btn-sm">View</button>
