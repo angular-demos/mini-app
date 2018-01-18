@@ -4,6 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {SharedModule} from '../Shared/Shared';
 import {UIModule} from '../UI/UI';
 import {COMPONENTS} from './Components/Components';
+import {GUARDS} from './Guards/Guards';
 import {UsersRoutesModule} from './UsersRoutes';
 
 @NgModule({
@@ -16,6 +17,9 @@ import {UsersRoutesModule} from './UsersRoutes';
     ],
     declarations: [
         COMPONENTS
+    ],
+    providers: [
+        GUARDS
     ],
     exports: [
         COMPONENTS

@@ -56,7 +56,7 @@ export class LoginComponent {
                 this.change.detectChanges();
             })
             .subscribe(() => {
-                    this.router.navigate(['/']).then(() => {
+                    this.router.navigate(['/posts/view']).then(() => {
                         this.toast.success('You have successfully signed in.');
                     });
                 },
