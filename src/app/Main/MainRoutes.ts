@@ -8,6 +8,8 @@ const routes: Routes = [
         path: '',
         component: MainComponent,
         children: [
+            {path: 'albums', loadChildren: 'app/Albums/Albums#AlbumsModule'},
+            {path: 'todos', loadChildren: 'app/Todos/Todos#TodosModule'},
             {path: 'posts', loadChildren: 'app/Posts/Posts#PostsModule'},
             {path: 'users', loadChildren: 'app/Users/Users#UsersModule'}
         ]
