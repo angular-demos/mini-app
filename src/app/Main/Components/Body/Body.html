@@ -4,9 +4,7 @@
 <ui-toast></ui-toast>
 <div *ngIf="!outlet || !outlet.isActivated"
      class="app-loading">
-<!--
-    <app-logo class="large"></app-logo>
--->
+    <div class="logo"><span class="first-word">Mini</span><span class="second-word">App</span></div>
     <p>Loading your profile...</p>
     <ui-loading-bar position="inline" [active]="loading"></ui-loading-bar>
 </div>
