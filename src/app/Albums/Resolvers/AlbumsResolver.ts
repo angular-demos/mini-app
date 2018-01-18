@@ -2,15 +2,15 @@ import {Injectable} from '@angular/core';
 import {Response} from '@angular/http';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {PostEntity} from '../../Shared/Models/PostEntity';
+import {AlbumEntity} from '../../Shared/Models/AlbumEntity';
 import {UserEntity} from '../../Shared/Models/UserEntity';
 import {RestService} from '../../Shared/Services/Rest/RestService';
 
 /**
- * Fetches the Posts for the current user.
+ * Fetches the Albums for the current user.
  */
 @Injectable()
-export class PostsResolver implements Resolve<PostEntity[]> {
+export class AlbumsResolver implements Resolve<AlbumEntity[]> {
 
     /**
      * Constructor
@@ -22,12 +22,13 @@ export class PostsResolver implements Resolve<PostEntity[]> {
     /**
      * Loads the Posts data.
      */
-    public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PostEntity[]> {
+    public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<AlbumEntity[]> {
         const user = <UserEntity>route.parent.parent.data.user;
         if (!user) {
             throw new Error('Main route must resolve the current user.');
         }
-        return this.rest.getPosts(user.id)
+        return this.rest
+            .getAlbums(user.id)
             .map((resp: Response) => resp.json())
             .first();
     }

@@ -4,6 +4,7 @@ import {SharedModule} from '../Shared/Shared';
 import {UIModule} from '../UI/UI';
 import {AlbumsRoutesModule} from './AlbumsRoutes';
 import {COMPONENTS} from './Components/Components';
+import {RESOLVERS} from './Resolvers/Resolvers';
 
 @NgModule({
     imports: [
@@ -14,6 +15,9 @@ import {COMPONENTS} from './Components/Components';
     ],
     declarations: [
         COMPONENTS
+    ],
+    providers: [
+        RESOLVERS
     ]
 })
 export class AlbumsModule {

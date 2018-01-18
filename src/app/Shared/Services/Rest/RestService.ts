@@ -80,6 +80,13 @@ export class RestService {
     }
 
     /**
+     * Perform a GET to fetch all albums for a user (includes photos).
+     */
+    public getAlbums(userId: number): Observable<Response> {
+        return this.execute(RequestMethod.Get, RestService.BASE_URL + 'albums?_embed=photos&userId=' + userId);
+    }
+
+    /**
      * Executor of all REST requests.
      */
     public execute(

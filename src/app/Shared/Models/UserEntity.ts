@@ -1,3 +1,4 @@
+import {PostEntity} from './PostEntity';
 import {UserAddressEntity} from './UserAddressEntity';
 import {UserCompanyEntity} from './UserCompanyEntity';
 

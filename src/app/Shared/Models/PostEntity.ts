@@ -1,4 +1,5 @@
 import {CommentEntity} from './CommentEntity';
+import {UserEntity} from './UserEntity';
 
 export interface PostEntity {
     id: number;

@@ -16,9 +16,9 @@ export class ViewComponent implements OnInit, OnDestroy {
     public posts: PostEntity[] = [];
 
     /**
-     * Data for the search prompt
+     * The current search term.
      */
-    public model = {search: ''};
+    public search: string = '';
 
     /**
      * Subscription helper.
