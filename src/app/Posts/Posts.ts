@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {SharedModule} from '../Shared/Shared';
 import {UIModule} from '../UI/UI';
 import {COMPONENTS} from './Components/Components';
-import {PIPES} from './Pipes/Pipes';
 import {PostsRoutesModule} from './PostsRoutes';
 import {RESOLVERS} from './Resolvers/Resolvers';
 
@@ -15,8 +14,7 @@ import {RESOLVERS} from './Resolvers/Resolvers';
         PostsRoutesModule
     ],
     declarations: [
-        COMPONENTS,
-        PIPES
+        COMPONENTS
     ],
     providers: [
         RESOLVERS

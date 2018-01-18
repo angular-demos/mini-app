@@ -1,4 +1,6 @@
-<ui-view-header title="Albums"></ui-view-header>
+<ui-view-header title="Albums"
+                [count]="(albums | filter:{title:search}).length"
+                [(search)]="search"></ui-view-header>
 <table class="table">
     <thead>
     <tr>
@@ -9,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let album of albums">
+    <tr *ngFor="let album of albums | filter:{title:search}">
         <th scope="row">{{album.id}}</th>
         <td>{{album.title}}</td>
         <td>{{album.photos?.length}}</td>
