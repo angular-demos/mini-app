@@ -6,7 +6,9 @@
 
         <form>
             <div class="form-row">
-                <div class="form-group col-10">
+                <div class="form-group"
+                     [class.col-10]="!filter"
+                     [class.col-6]="filter">
                     <label for="searchInput" class="sr-only">Search</label>
                     <input class="form-control"
                            id="searchInput"
@@ -26,6 +28,22 @@
                             (click)="setSort(getNextSort())">
                         <ui-icon [name]="getSortIcon()"></ui-icon>
                     </button>
+                </div>
+
+                <div class="form-group col-4" *ngIf="filter">
+                    <div ngbDropdown>
+                        <button class="btn btn-outline-primary btn-block"
+                                id="displayDropDown"
+                                ngbDropdownToggle>
+                            {{filter | titlecase }}
+                        </button>
+                        <div ngbDropdownMenu aria-labelledby="displayDropDown">
+                            <button class="dropdown-item"
+                                    *ngFor="let f of filters"
+                                    (click)="setFilter(f)">{{f | titlecase}}
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

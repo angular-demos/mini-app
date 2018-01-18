@@ -31,6 +31,16 @@ export class ViewComponent implements OnInit, OnDestroy {
     public page: number = 1;
 
     /**
+     * The default filter.
+     */
+    public filter: string = 'all';
+
+    /**
+     * A list of filter options.
+     */
+    public filters: string[] = ['all', 'completed', 'unfinished'];
+
+    /**
      * Subscription helper.
      */
     private unsub: SubscriptionMap = new SubscriptionMap();
@@ -40,6 +50,17 @@ export class ViewComponent implements OnInit, OnDestroy {
      */
     public constructor(private route: ActivatedRoute) {
 
+    }
+
+    /**
+     * Computes the filter options for the filter pipe.
+     */
+    public getFilterOptions() {
+        let options = null;
+        if (this.filter != 'all') {
+            options = {completed: this.filter == 'completed'};
+        }
+        return options;
     }
 
     /**

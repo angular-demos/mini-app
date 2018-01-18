@@ -47,6 +47,31 @@ export class ViewHeaderComponent {
     public sortChange: EventEmitter<string> = new EventEmitter<string>();
 
     /**
+     * An optional array of filters.
+     */
+    @Input()
+    public filters: string[] = [];
+
+    /**
+     * The default filter
+     */
+    @Input()
+    public filter: string;
+
+    /**
+     * Emits when the filter was changed.
+     */
+    @Output()
+    public filterChange: EventEmitter<string> = new EventEmitter<string>();
+
+    /**
+     * Emits a change to the filter.
+     */
+    public setFilter(value: string) {
+        this.filterChange.emit(value);
+    }
+
+    /**
      * Emits a change to the search term.
      */
     public setSearch(term: string) {

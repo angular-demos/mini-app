@@ -16,7 +16,11 @@ export class FilterPipe implements PipeTransform {
             let match = false;
             Object.keys(filter).forEach((key) => {
                 if (item.hasOwnProperty(key)) {
-                    match = match || item[key].indexOf(filter[key]) !== -1;
+                    if (typeof item[key] === 'string') {
+                        match = match || item[key].indexOf(filter[key]) !== -1;
+                    } else {
+                        match = match || item[key] == filter[key];
+                    }
                 }
             });
             return match;
