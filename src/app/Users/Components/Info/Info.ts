@@ -1,4 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {UserEntity} from '../../../Shared/Models/UserEntity';
+import {AuthService} from '../../../Shared/Services/Auth/AuthService';
 
 @Component({
     selector: 'users-info',
@@ -8,20 +11,14 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 })
 export class InfoComponent {
     /**
-     * The user's name.
+     * Emits user session changes.
      */
-    @Input()
-    public name: string;
+    public user: Observable<UserEntity | null>;
 
     /**
-     * A link for the user's website.
+     * Constructor
      */
-    @Input()
-    public url: string;
-
-    /**
-     * The user's company name.
-     */
-    @Input()
-    public company: string;
+    public constructor(auth: AuthService) {
+        this.user = auth.getUsers();
+    }
 }

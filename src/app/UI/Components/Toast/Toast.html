@@ -1,12 +1,5 @@
-<ui-alert *ngFor="let item of queue; trackBy: trackItem; index as indx"
-          [title]="item.title"
-          [icon]="item.icon"
-          [color]="item.type"
-          [dismissible]="true"
-          [timeout]="item.timeout"
-          (close)="remove(indx)">
+<ngb-alert *ngFor="let item of queue; trackBy: trackItem; index as indx"
+           [type]="item.type"
+           (close)="remove(item)">
     {{item.message}}
-    <ng-container *ngIf="debug && item.debug">
-        <pre><code>{{item.debug | json}}</code></pre>
-    </ng-container>
-</ui-alert>
+</ngb-alert>

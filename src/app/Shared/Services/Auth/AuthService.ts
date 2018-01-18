@@ -16,9 +16,9 @@ import {ToastService} from '../Toast/ToastService';
 @Injectable()
 export class AuthService {
     /**
-     * Emits session objects or null.
+     * Emits user objects or null.
      */
-    private _sessions: Subject<UserEntity | null>;
+    private _users: Subject<UserEntity | null>;
 
     /**
      * Constructor
@@ -28,7 +28,7 @@ export class AuthService {
         private rest: RestService,
         toast: ToastService
     ) {
-        this._sessions = new ReplaySubject(1);
+        this._users = new ReplaySubject(1);
 
         let token = this.storage.getString(STORAGE_TOKEN);
         if (token) {
@@ -36,11 +36,11 @@ export class AuthService {
                 .subscribe(() => {
                     toast.success('You have been logged in automatically.');
                 }, () => {
-                    this.setSession(null);
+                    this.setUser(null);
                     toast.warning('Could not restore user session.');
                 });
         } else {
-            this.setSession(null);
+            this.setUser(null);
         }
     }
 
@@ -56,8 +56,8 @@ export class AuthService {
     /**
      * Broadcasts a new session to subscribed listeners.
      */
-    public setSession(value: UserEntity | null, remember?: boolean): this {
-        this._sessions.next(value);
+    public setUser(value: UserEntity | null, remember?: boolean): this {
+        this._users.next(value);
 
         if (value && remember) {
             this.storage.set(STORAGE_TOKEN, value.id);
@@ -70,11 +70,9 @@ export class AuthService {
 
     /**
      * Gets an observable that can be watched for new user sessions.
-     *
-     * @todo Rename to getUsers
      */
-    public getSessions(): Observable<UserEntity | null> {
-        return this._sessions;
+    public getUsers(): Observable<UserEntity | null> {
+        return this._users;
     }
 
     /**
@@ -84,14 +82,15 @@ export class AuthService {
         this.storage.remove(STORAGE_TOKEN);
 
         return Observable.create((subscriber: Subscriber<boolean>) => {
-            this.getSessions()
+            this.getUsers()
                 .first()
-                .subscribe((session: UserEntity | null) => {
-                    if (session === null) {
-                        subscriber.next(true);
+                .subscribe((user: UserEntity | null) => {
+                    if (user === null) {
+                        subscriber.next(false);
                         subscriber.complete();
                     } else {
-                        this.setSession(null);
+                        subscriber.next(true);
+                        this.setUser(null);
                         subscriber.complete();
                     }
                 });
@@ -115,9 +114,6 @@ export class AuthService {
      * Returns an observable that completes when the login has finished.
      */
     public logIn(email: string, password: string, remember: boolean): Observable<UserEntity> {
-
-        console.log(email);
-
         return this.rest
             .execute(RequestMethod.Get, 'https://jsonplaceholder.typicode.com/users')
             .map((resp: Response) => {
@@ -127,19 +123,8 @@ export class AuthService {
                     resp.status = 401;
                     throw resp;
                 }
+                this.setUser(entity, remember);
                 return entity;
             });
-
-
-        // return this.userSessions
-        //     .newEntity({email, password})
-        //     .createSession()
-        //     .filter((response: RestResponse<UserSessionEntity>) => response.isSuccessStatus())
-        //     .map((response: RestResponse<UserSessionEntity>) => {
-        //         const userSession = response.getOne();
-        //         userSession.remember = remember;
-        //         this.setSession(userSession, remember);
-        //         return userSession;
-        //     });
     }
 }

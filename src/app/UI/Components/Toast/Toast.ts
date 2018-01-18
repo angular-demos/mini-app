@@ -26,9 +26,14 @@ export class ToastComponent implements OnDestroy {
      * Constructor
      */
     public constructor(private toast: ToastService) {
-        this.toastSubscription = toast.messages.subscribe((info) => {
-            console.debug('subscribe', info);
-            this.queue.push(info);
+        this.toastSubscription = toast.messages.subscribe((info: ToastInfo) => {
+            console.info('subscribe', info);
+            this.queue.unshift(info);
+            if (info.timeout !== 0) {
+                setTimeout(() => {
+                    this.remove(info);
+                }, info.timeout * 1000);
+            }
         });
     }
 
@@ -42,8 +47,11 @@ export class ToastComponent implements OnDestroy {
     /**
      * Remove a toast message.
      */
-    public remove(indx: number) {
-        this.queue.splice(indx, 1);
+    public remove(info: ToastInfo) {
+        const indx: number = this.queue.indexOf(info);
+        if (indx !== -1) {
+            this.queue.splice(indx, 1);
+        }
     }
 
     /**

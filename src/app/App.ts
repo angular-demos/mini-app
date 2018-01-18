@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AlbumsModule} from './Albums/Albums';
 import {BodyComponent} from './Main/Components/Body/Body';
 
@@ -19,7 +20,8 @@ import {UsersModule} from './Users/Users';
         PostsModule,
         TodosModule,
         UsersModule,
-        SharedModule.forRoot()
+        SharedModule.forRoot(),
+        NgbModule.forRoot()
     ],
     bootstrap: [
         BodyComponent

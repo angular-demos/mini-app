@@ -1,6 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../Shared/Shared';
 import {COMPONENTS} from './Components/Components';
 import {DIRECTIVES} from './Directives/Directives';
@@ -12,7 +13,8 @@ import {WINDOW} from './Types/WindowToken';
         CommonModule,
         FormsModule,
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule
     ],
     declarations: [
         COMPONENTS,
@@ -28,7 +30,8 @@ import {WINDOW} from './Types/WindowToken';
         PIPES,
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule
     ]
 })
 export class UIModule {

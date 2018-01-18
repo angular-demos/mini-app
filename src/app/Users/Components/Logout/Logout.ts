@@ -17,14 +17,20 @@ export class LogoutComponent {
      */
     public constructor(auth: AuthService, router: Router, toast: ToastService) {
         auth.endSession()
+            .take(1)
             .finally(() => {
                 router.navigate(['/users/login']).catch(() => {
                     toast.danger('Could not redirect to login.');
                 });
             })
-            .filter((value) => value === true)
             .subscribe(
-                () => toast.success('You have been signed out.'),
+                (value: boolean) => {
+                    if(value) {
+                        toast.success('You have been signed out.');
+                    } else {
+                        toast.warning('You need to sign in first.');
+                    }
+                },
                 () => toast.warning('Could not end your current session.')
             );
     }
