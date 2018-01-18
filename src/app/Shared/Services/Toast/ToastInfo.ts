@@ -75,7 +75,7 @@ export class ToastInfo {
         this.title = params['title'] || null;
         this.icon = params['icon'] || null;
         this.debug = params['debug'] || null;
-        this.timeout = type === 'danger' ? 0 : 5;
+        this.timeout = type === 'danger' ? 0 : 2;
     }
 
     /**

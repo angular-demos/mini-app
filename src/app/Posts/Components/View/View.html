@@ -1,8 +1,35 @@
-<ngb-accordion>
-    <ngb-panel *ngFor="let post of posts"
-               title="{{post.title}} ({{post.comments?.length}} comments)">
-        <ng-template ngbPanelContent>
-            {{post.body}}
-        </ng-template>
-    </ngb-panel>
-</ngb-accordion>
+<div class="row">
+    <div class="col">
+        <h2>Posts <span *ngIf="model.search">({{(posts | postsFilter:model.search).length}} found)</span></h2>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <form>
+            <div class="form-group">
+                <input class="form-control"
+                       name="search"
+                       placeholder="Search"
+                       [(ngModel)]="model.search">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <ngb-accordion>
+            <ngb-panel *ngFor="let post of posts | postsFilter:model.search"
+                       title="{{post.title}} ({{post.comments?.length}} comments)">
+                <ng-template ngbPanelContent>
+                    {{post.body}}
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+    </div>
+</div>
+<div class="row"
+     *ngIf="(posts | postsFilter:model.search).length === 0">
+    <div class="col">
+        <p>
+            There are no posts matching your search term.
+        </p>
+    </div>
+</div>
