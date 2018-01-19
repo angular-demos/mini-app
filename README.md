@@ -1,4 +1,7 @@
-# mini-app
+# MiniApp - [MiniApp](https://angular-demos.github.io/mini-app/)
+
+[![Build Status](https://travis-ci.org/angular-demos/mini-app.svg?branch=master)](https://travis-ci.org/angular-demos/mini-app)
+
 Demonstrates some basic concepts required by most applications.
 
 ## File Naming Convention
