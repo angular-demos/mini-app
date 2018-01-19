@@ -1,5 +1,5 @@
 <ui-view-header data-title="Albums"
-                [count]="(albums | filter:{title:search}).length"
+                [count]="(albums | filter:search).length"
                 [(search)]="search"
                 [(sort)]="sort">
     <table class="table">
@@ -12,9 +12,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let album of albums | filter:{title:search} | sort:{key:'title',dir:sort}">
+        <tr *ngFor="let album of albums | filter:search | sort:{key:'title',dir:sort}">
             <th scope="row">{{album.id}}</th>
-            <td [innerHtml]="album.title | highlight:search"></td>
+            <td [innerHtml]="album.title | highlight:search:true"></td>
             <td>{{album.photos?.length}}</td>
             <td>
                 <albums-photos-dialog

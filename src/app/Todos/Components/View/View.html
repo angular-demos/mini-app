@@ -1,5 +1,5 @@
 <ui-view-header data-title="To Do List"
-                [count]="(todos | filter:{title:search} | filter:getFilterOptions()).length"
+                [count]="(todos | filter:search | completed:filter).length"
                 [(search)]="search"
                 [(sort)]="sort"
                 [(filter)]="filter"
@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let todo of todos | filter:{title:search} | filter:getFilterOptions() | sort:{key:'title',dir:sort} | slice:((page-1) * 10):(page * 10)"
+        <tr *ngFor="let todo of todos | filter:search | completed:filter | sort:{key:'title',dir:sort} | slice:((page-1) * 10):(page * 10)"
             todos-row
             [todo]="todo"
             [search]="search"
@@ -26,7 +26,7 @@
         </tbody>
     </table>
 
-    <ngb-pagination [collectionSize]="(todos | filter:{title:search} | filter:getFilterOptions()).length"
+    <ngb-pagination [collectionSize]="(todos | filter:search | completed:filter).length"
                     [(page)]="page"
                     [pageSize]="10"></ngb-pagination>
 

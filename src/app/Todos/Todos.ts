@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {SharedModule} from '../Shared/Shared';
 import {UIModule} from '../UI/UI';
 import {COMPONENTS} from './Components/Components';
+import {PIPES} from './Pipes/Pipes';
 import {RESOLVERS} from './Resolvers/Resolvers';
 import {TodosRoutesModule} from './TodosRoutes';
 
@@ -14,7 +15,8 @@ import {TodosRoutesModule} from './TodosRoutes';
         TodosRoutesModule
     ],
     declarations: [
-        COMPONENTS
+        COMPONENTS,
+        PIPES
     ],
     providers: [
         RESOLVERS

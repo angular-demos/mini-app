@@ -8,12 +8,12 @@ import {Strings} from '../../../Shared/Utils/Strings';
     name: 'highlight'
 })
 export class HighlightPipe implements PipeTransform {
-    public transform(value: string, match: string) {
+    public transform(value: string, match: string, words?: boolean) {
         if (match) {
-            return value.replace(
-                new RegExp('(' + Strings.escapeRegExp(match) + ')', 'gi'),
-                '<span class="highlight">$1</span>'
-            );
+            let reg = words
+                ? new RegExp('\\b(' + Strings.escapeRegExp(match) + ')\\b', 'gi')
+                : new RegExp('(' + Strings.escapeRegExp(match) + ')', 'gi');
+            return value.replace(reg, '<span class="highlight">$1</span>');
         }
         return value;
     }

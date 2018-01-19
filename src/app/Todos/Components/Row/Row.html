@@ -6,7 +6,7 @@
              [ngbTooltip]="tipContent"
              (click)="todo.completed = !todo.completed"></ui-icon>
 </td>
-<td [innerHtml]="todo.title | highlight:search"></td>
+<td [innerHtml]="todo.title | highlight:search:true"></td>
 <td>
     <button class="btn btn-primary btn-sm" (click)="remove.emit(todo)">
         Remove

@@ -3,6 +3,7 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/co
 import {ActivatedRoute} from '@angular/router';
 import {ToDoEntity} from '../../../Shared/Models/ToDoEntity';
 import {SubscriptionMap} from '../../../Shared/Utils/SubscriptionMap';
+import {CompletedEnum} from '../../Enums/CompletedEnum';
 
 @Component({
     selector: 'todos-view',
@@ -25,6 +26,11 @@ export class ViewComponent implements OnInit, OnDestroy {
     public todos: ToDoEntity[] = [];
 
     /**
+     * A pre-filtered list of to do items.
+     */
+    public todosCache: ToDoEntity[] = [];
+
+    /**
      * The current search term.
      */
     public search: string = '';
@@ -42,12 +48,12 @@ export class ViewComponent implements OnInit, OnDestroy {
     /**
      * The default filter.
      */
-    public filter: string = 'all';
+    public filter: string = CompletedEnum.ALL;
 
     /**
      * A list of filter options.
      */
-    public filters: string[] = ['all', 'completed', 'unfinished'];
+    public filters: string[] = [CompletedEnum.ALL, CompletedEnum.COMPLETED, CompletedEnum.UNFINISHED];
 
     /**
      * Subscription helper.
@@ -59,17 +65,6 @@ export class ViewComponent implements OnInit, OnDestroy {
      */
     public constructor(private route: ActivatedRoute) {
 
-    }
-
-    /**
-     * Computes the filter options for the filter pipe.
-     */
-    public getFilterOptions() {
-        let options = null;
-        if (this.filter != 'all') {
-            options = {completed: this.filter == 'completed'};
-        }
-        return options;
     }
 
     /**
