@@ -6,6 +6,10 @@
     width: 100%;
     height: 100%;
 
+    users-info {
+        margin-right: $margin;
+    }
+
     .container {
         margin-top: $font-size-base + $navbar-padding-x * 2 + $spacer;
     }

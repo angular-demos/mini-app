@@ -19,8 +19,10 @@
                 <a class="nav-link" routerLink="/todos">To Dos</a>
             </li>
         </ul>
-        <users-info></users-info>
-        <a class="nav-link" routerLink="/users/logout">Logout</a>
+        <div class="navbar-nav">
+            <users-info class="nav-item nav-link"></users-info>
+            <a class="btn btn-outline-primary" routerLink="/users/logout">Logout</a>
+        </div>
     </div>
 </nav>
 <ui-toast [stack]="false"></ui-toast>
