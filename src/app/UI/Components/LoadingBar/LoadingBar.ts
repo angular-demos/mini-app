@@ -1,6 +1,5 @@
 import {animate, style, transition, trigger} from '@angular/animations';
 import {Component, HostBinding, Input} from '@angular/core';
-import {Timings} from '../../../Shared/Animations/Timings';
 
 /**
  * Displays a horizontal line across the top of the browser that represents HTTP IO operations.
@@ -17,7 +16,7 @@ import {Timings} from '../../../Shared/Animations/Timings';
             ]),
             transition('start=>end', [
                 style({opacity: 1, width: '*'}),
-                animate(Timings.easeOut(), style({opacity: 0, width: '100%'}))
+                animate('0.3s ease-out', style({opacity: 0, width: '100%'}))
             ])
         ])
     ]
