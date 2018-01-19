@@ -42,7 +42,7 @@ export class ToastComponent implements OnDestroy {
         this.toastSubscription = toast.messages.share().subscribe((info: ToastInfo) => {
             this.queue.unshift(info);
             if (info.timeout !== 0) {
-                info.handle = setTimeout(() => {
+                info.handle = window.setTimeout(() => {
                     this.remove(info);
                 }, info.timeout * 1000);
             }

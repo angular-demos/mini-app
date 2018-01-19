@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-import Timer = NodeJS.Timer;
 
 /**
  * Describes what a toast message is.
@@ -63,7 +62,7 @@ export class ToastInfo {
     /**
      * A timeout handle
      */
-    public handle: Timer = null;
+    public handle: number = null;
 
     /**
      * Optional debug data to append to the toast.

@@ -2,7 +2,13 @@
 
 [![Build Status](https://travis-ci.org/angular-demos/mini-app.svg?branch=master)](https://travis-ci.org/angular-demos/mini-app)
 
-Demonstrates some basic concepts required by most applications.
+This is a simple Angular application that uses a mock JSON API provided by [JSONPlaceHolder](https://jsonplaceholder.typicode.com/).
+It demonstrates 3 basic user operations.
+
+- displays a list of blog posts
+- displays a list of photo albums
+- displays a list of to do items.
+
 
 ## File Naming Convention
 
