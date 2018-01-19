@@ -1,14 +1,34 @@
-import { AppPage } from './app.po';
+import {browser, by, element, protractor} from 'protractor';
+import {MainPage} from './main.po';
+import {UsersLoginPage} from './users.login.po';
 
-describe('tooltips App', () => {
-  let page: AppPage;
+describe('Users features', () => {
+    let users: UsersLoginPage;
+    let main: MainPage;
 
-  beforeEach(() => {
-    page = new AppPage();
-  });
+    beforeEach(() => {
+        users = new UsersLoginPage();
+        main = new MainPage();
+    });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
-  });
+    it('perform a successful log in', () => {
+        users.navitageTo();
+        expect(users.getH2Element().getText()).toEqual('Please sign in');
+
+        let email = 'Lucio_Hettinger@annie.ca';
+        let name = 'Chelsey Dietrich';
+        users.getEmailElement().clear();
+        users.getEmailElement().sendKeys(email);
+        expect(users.getEmailElement().getAttribute('value')).toEqual(email);
+
+        users.getSubmitElement().click();
+        expect(browser.getCurrentUrl()).toMatch(/\/posts\/view$/);
+
+        // user data is lazy loaded so this just waits for 5 seconds.
+        browser.wait(
+            protractor.ExpectedConditions.textToBePresentInElement(main.getUsersInfoNameElement(), name),
+            5000,
+            'Timeout waiting for user info.'
+        );
+    });
 });

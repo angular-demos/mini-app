@@ -36,6 +36,27 @@ npm install
 npm start
 ```
 
+# Unit Tests and E2E
+
+This demo contains just a few tests to show how testing will be handled in the future. It
+supports both unit tests and integration tests.
+
+To run the unit tests for components:
+
+```
+npm test
+```
+
+> This will verify that the MainComponent renders the brand name "MiniApp"
+
+To run integration tests for E2E:
+
+```
+npm run e2e
+```
+
+> This will verify that the Users module performs a log in successfully.
+
 # Overview
 
 This application is designed as a *read-only* example of a basic Angular application. The text shown 
