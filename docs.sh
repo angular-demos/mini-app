@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-ng build --prod --output-path docs --base-href 'https://angular-demos.github.io/mini-app/'
+ng build --prod --base-href 'https://angular-demos.github.io/mini-app/'
+ngh --message="GitHub pages"
