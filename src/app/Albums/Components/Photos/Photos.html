@@ -1,15 +1,21 @@
-<div class="row photos">
+<div class="row photos" *ngFor="let row of pages[page-1]">
+    <div class="col" *ngFor="let photo of row">
+        <albums-photo *ngIf="photo" [photo]="photo"></albums-photo>
+    </div>
+</div>
+<div class="row" *ngIf="!pages.length">
     <div class="col">
-        <albums-photo *ngFor="let photo of photos | slice:((photosPage-1)*10):(photosPage*10)"
-                      [photo]="photo"
-                      [size]="150">
-        </albums-photo>
+        <p>
+            There are no photos in this album.
+        </p>
     </div>
 </div>
 <div class="row">
     <div class="col">
-        <ngb-pagination [collectionSize]="photos.length"
-                        [(page)]="photosPage"
-                        [pageSize]="10"></ngb-pagination>
+        <ngb-pagination
+            class="mx-auto"
+            [collectionSize]="photos.length"
+            [(page)]="page"
+            [pageSize]="columns * rows"></ngb-pagination>
     </div>
 </div>

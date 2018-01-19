@@ -16,10 +16,4 @@ export class PhotoComponent {
      */
     @Input()
     public photo: PhotoEntity;
-
-    /**
-     * The size for the thumbnail
-     */
-    @Input()
-    public size: number = 150;
 }

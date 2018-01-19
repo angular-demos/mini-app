@@ -3,6 +3,22 @@
 :host {
     display: block;
     position: relative;
-    float: left;
-    margin: $padding;
+    margin: 0 $margin $margin 0;
+    width: 100%;
+    img {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+    .filler {
+        display: block;
+        position: relative;
+        width: 100%;
+        // prevents size jumping when the image is loading (maintains square aspect ratio)
+        padding-bottom: 100%;
+        padding-right: $margin;
+        padding-top: $margin;
+    }
 }
