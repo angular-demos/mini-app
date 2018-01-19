@@ -20,5 +20,5 @@ before_script:
   - ng build
 
 script:
-  - ng test --single-ren
+  - ng test --single-run
 
