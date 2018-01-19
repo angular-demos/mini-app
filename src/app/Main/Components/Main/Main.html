@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" routerLink="/posts"><strong>Mini</strong>App</a>
     <button class="navbar-toggler"
             (click)="toggleCollapse = !toggleCollapse"
@@ -23,7 +23,7 @@
         <a class="nav-link" routerLink="/users/logout">Logout</a>
     </div>
 </nav>
-
+<ui-toast [stack]="false"></ui-toast>
 <main role="main" class="container">
     <router-outlet></router-outlet>
 </main>

@@ -18,18 +18,19 @@ export class LogoutComponent {
     public constructor(auth: AuthService, router: Router, toast: ToastService) {
         auth.endSession()
             .take(1)
-            .finally(() => {
-                router.navigate(['/users/login']).catch(() => {
-                    toast.danger('Could not redirect to login.');
-                });
-            })
             .subscribe(
                 (value: boolean) => {
-                    if(value) {
-                        toast.success('You have been signed out.');
-                    } else {
-                        toast.warning('You need to sign in first.');
-                    }
+                    router.navigate(['/users/login'])
+                        .then(() => {
+                            if (value) {
+                                toast.success('You have been signed out.');
+                            } else {
+                                toast.warning('You need to sign in first.');
+                            }
+                        })
+                        .catch(() => {
+                            toast.danger('Could not redirect to login.');
+                        });
                 },
                 () => toast.warning('Could not end your current session.')
             );

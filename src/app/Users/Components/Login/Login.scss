@@ -3,7 +3,10 @@
 :host {
     display: block;
     position: relative;
-    padding-top: $spacer * 2;
+
+    .container {
+        padding-top: $spacer * 2;
+    }
 
     h2 {
         margin-bottom: 10px;

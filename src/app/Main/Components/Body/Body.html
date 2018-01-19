@@ -1,7 +1,6 @@
 <ui-loading-bar *ngIf="outlet && outlet.isActivated"
                 position="top"
                 [active]="loading"></ui-loading-bar>
-<ui-toast></ui-toast>
 <div *ngIf="!outlet || !outlet.isActivated"
      class="app-loading">
     <div class="logo"><span class="first-word">Mini</span><span class="second-word">App</span></div>

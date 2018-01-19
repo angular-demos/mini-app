@@ -2,9 +2,17 @@
 
 :host {
     display: block;
-    position: absolute;
-    top: $margin;
-    right: $margin;
-    z-index: $zindex-modal + 10;
-    width: $ui-toast-width;
+    position: relative;
+
+    /deep/ .alert {
+        margin: 0;
+    }
+
+    &.stack {
+        position: absolute;
+        top: $margin;
+        right: $margin;
+        z-index: $zindex-modal + 10;
+        width: $ui-toast-width;
+    }
 }

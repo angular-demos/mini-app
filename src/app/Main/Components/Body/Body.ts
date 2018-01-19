@@ -23,7 +23,7 @@ export class BodyComponent implements OnDestroy {
     public outlet: RouterOutlet;
 
     @HostBinding('class.login')
-    private isLogin: boolean = true;
+    public isLogin: boolean = true;
 
     /**
      * Helps with observables.
